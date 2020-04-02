@@ -1,0 +1,26 @@
+<view class="bg-gradual-blue padding radius shadow-blur" style="margin:10px">
+	<!-- 左侧logo -->
+	<view class="vipCard">
+		<view class="cu-avatar round " style="background-image:url({{card.logo}});"></view>
+	</view>
+	<!-- 中间的会员卡信息 -->
+	<view class="" style="padding:6px; display:inline-block">
+		<view>
+			<view>{{card.bussinessName}}</view>
+			<view>{{card.cardName}}</view>
+			<view>开始日期： {{card.cardTimeStart}} </view>
+			<view>结束日期： {{card.cardTimeEnd}} </view>
+		</view>
+	</view>
+
+	<view class="fr">
+		<!-- 右侧会员卡标签 -->
+		<view class="tag" >
+			<block wx:for="{{card.cardTypeList}}" wx:key="cardTypeList">
+					<view class="cu-tag line-black flex-wrap " >{{item}}</view>
+			</block>
+		</view>
+		<!-- 分享会员卡按钮 -->
+		<button class="cu-btn line-black round sm fr" style="width:100rpx;margin-top:70rpx">分享</button>
+	</view>
+</view>

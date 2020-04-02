@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/personal/personal",
+    "pages/makeCard/makeCard",
+    "pages/myCard/myCard",
+    "pages/myCard/vipCard/vipCard",
+    "pages/cashier/cashier"
+    
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "商家端",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar":{ 
+    "list":[
+      {
+        "pagePath":"pages/makeCard/makeCard",
+        "text":"创建会员卡",
+        "iconPath":"images/tabBar/makeCard.png",
+        "selectedIconPath": "images/tabBar/makeCardActive.png"
+      },{
+        "pagePath": "pages/myCard/myCard",
+        "text": "会员卡管理",
+        "iconPath": "images/tabBar/card.png",
+        "selectedIconPath": "images/tabBar/cardActive.png"
+      },{
+        "pagePath": "pages/cashier/cashier",
+        "text": "核销员管理",
+        "iconPath": "images/tabBar/cashier.png",
+        "selectedIconPath": "images/tabBar/cashierActive.png"
+      },{
+        "pagePath": "pages/personal/personal",
+        "text": "商家信息",
+        "iconPath": "images/tabBar/person.png",
+        "selectedIconPath": "images/tabBar/personActive.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

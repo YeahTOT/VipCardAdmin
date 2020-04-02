@@ -1,0 +1,131 @@
+<!--pages/makeCard/makeCard.wxml-->
+
+<!-- 会员卡名称 -->
+<view class="cu-form-group margin-top">
+	<view class="title">会员卡名称</view>
+	<input placeholder="输入会员卡名称"></input>
+</view>
+<!-- 发卡数量 -->
+<view class="cu-form-group">
+	<view class="title">发卡数量</view>
+	<input placeholder="输入发卡数量"></input>
+</view>
+<!-- 设置有效期 -->
+<view class="cu-form-group">
+	<view class="title">开始日期</view>
+	<picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="DateStartChange">
+		<view class="picker">
+			{{dateStart}}
+		</view>
+	</picker>
+</view>
+<view class="cu-form-group">
+	<view class="title">截止日期</view>
+	<picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="DateEndChange">
+		<view class="picker">
+			{{dateEnd}}
+		</view>
+	</picker>
+</view>
+<!-- 会员卡类型 -->
+<view class="cu-form-group ">
+	<view class="title">会员卡类型</view>
+	<picker bindchange="cardTypePickerChange" value="{{cardTypeIndex}}" range="{{cardTypePicker}}">
+		<view class="picker">
+			{{cardTypeIndex?cardTypePicker[cardTypeIndex]:'选择会员卡类型'}}
+		</view>
+	</picker>
+</view>
+<!-- 是否可以分享按钮 -->
+<view class="cu-form-group">
+	<view class="title">用户是否可以分享</view>
+	<switch></switch>
+</view>
+<!-- 是否可以积分按钮 -->
+<!-- <view class="cu-form-group" wx:if="{{cardTypePicker[cardTypeIndex]=='储值卡'}}"> -->
+<view class="cu-form-group" >
+	<view class="title">是否有积分功能</view>
+	<switch bindchange="cardIsScoreChange"></switch>
+</view>
+<!-- 积分获取规则 -->
+<view class="cu-form-group" wx:if="{{cardIsScore==true}}" wx:key="jfhq">
+	<view class="title">积分获取规则</view>
+	每<input placeholder="多少金额" style="border:1px solid #eee;margin:0 5px"></input>对应 <input placeholder="多少积分" style="border:1px solid #eee;margin:0 5px"></input>
+</view>
+<!-- 会员卡等级 -->
+<view class="cu-form-group" wx:if="{{cardTypePicker[cardTypeIndex]=='储值卡'}}">
+	<view class="title">会员卡等级</view>
+	<picker bindchange="cardGradeRulePickerChange" value="{{cardGradeRuleIndex}}" range="{{cardGradeRulePicker}}">
+		<view class="picker">
+			{{cardGradeRuleIndex?cardGradeRulePicker[cardGradeRuleIndex]:'请先选择会员卡类型'}}
+		</view>
+	</picker>
+</view>
+<view wx:if="{{cardGradeRuleIndex!=null}}" wx:key='aa'>
+	<view wx:if="{{cardTypePicker[cardTypeIndex]=='储值卡' && cardGradeRulePicker[cardGradeRuleIndex]!='不设置会员卡等级' }}" wx:key="a">
+		<!-- ------------------------------------------------ -->
+		<!-- 会员卡等级规则设置 -->
+		<view class="layout_horizontal" style="border:1px 0px solid #eee">
+			<view class="one left">
+				<view>等级</view>
+			</view>
+			<view class="one center">
+				<view wx:if="{{cardGradeRulePicker[cardGradeRuleIndex]=='按照积分'}}" wx:key="a">积分区间</view>
+				<view wx:elif="{{cardGradeRulePicker[cardGradeRuleIndex]=='按照充值金额'}}" wx:key="a">充值金额区间</view>
+			</view>
+			<view class="one right">
+				<view>折扣</view>
+			</view>
+		</view>
+		<block wx:for="{{gradeList}}" wx:key="gradeList">
+			<view class="layout_horizontal" style="border:1px 0px solid #eee">
+				<!-- 左侧等级部分 -->
+				<view class="one left" style="width:200rpx;border-right:1px solid #eee;">
+					<input type="text" placeholder="输入会员等级"></input>
+				</view>
+				<!-- 中间规则部分 -->
+				<view class="one center" style="flex:1;">
+					<!-- 一行输入框 -->
+					<view class="rule">
+						<input type="text" placeholder="0" style=""></input>
+						<view class="txt">~~</view>
+						<input type="text" placeholder="100" style=""></input>
+					</view>
+				</view>
+				<!-- 右侧折扣部分 -->
+				<view class="one right" style="width:200rpx;border-left:1px solid #eee;">
+					<input type="text" placeholder="0.8"></input>
+				</view>
+			</view>
+		</block>
+
+		<view class="layout_horizontal" style="border:1px 0px solid #eee">
+			<!-- 占位 -->
+			<view class="one left" style="width:200rpx;border-right:1px solid #eee;"></view>
+			<view class="one center" style="flex:1;">
+				<!-- 显示增加按钮 -->
+				<button class="cu-btn line-black round" style="width:30px;height:30px;margin-right:60rpx" bindtap="removeList">
+					<text >-</text>
+				</button>
+				<button class="cu-btn line-black round" style="width:30px;height:30px;" bindtap="addList">
+					<text >+</text>
+				</button>
+			</view>
+			<!-- 占位 -->
+			<view class="one right" style="width:200rpx;border-left:1px solid #eee;">
+			</view>
+		</view>
+	</view>
+</view>
+<!-- ---------------------------------------------------- -->
+
+<!-- 首充金额 -->
+<view class="cu-form-group" wx:if="{{cardTypePicker[cardTypeIndex]=='储值卡'}}" wx:key="cardMoneyOne">
+	<view class="title">首充金额</view>
+	<input placeholder="输入首充金额"></input>
+</view>
+<!-- 充值金额对应的次数 -->
+<view class="cu-form-group" wx:if="{{cardTypePicker[cardTypeIndex]=='计次卡'}}" wx:key="cardMoneyToTimes">
+	<view class="title">充值金额对应的次数</view>
+	<input placeholder="输入充值金额对应的次数"></input>
+</view>

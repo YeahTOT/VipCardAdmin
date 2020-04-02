@@ -1,0 +1,23 @@
+<!--pages/myCard/vipCard/vipCard.wxml-->
+<card card="{{card}}"></card>
+<!-- 标签 -->
+  <navigator class="cu-bar bg-white solid-bottom margin-top" url="./record/record" open-type="navigate">
+    <view class="action">
+      <text class="cuIcon-tagfill text-orange "></text> 统计数据
+    </view>
+  </navigator>
+	<navigator class="cu-bar bg-white solid-bottom margin-top" url="./record/record?cardID={{cardID}}" open-type="navigate">
+    <view class="action">
+      <text class="cuIcon-tagfill text-orange "></text> 客户管理
+    </view>
+  </navigator>
+	<navigator class="cu-bar bg-white solid-bottom margin-top" url="./record/record" open-type="navigate">
+    <view class="action">
+      <text class="cuIcon-tagfill text-orange "></text> 修改会员卡信息
+    </view>
+  </navigator>
+	<navigator class="cu-bar bg-white solid-bottom margin-top" url="./record/record" open-type="navigate">
+    <view class="action">
+      <text class="cuIcon-tagfill text-orange "></text> 删除会员卡
+    </view>
+  </navigator>
