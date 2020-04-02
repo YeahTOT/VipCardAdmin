@@ -52,7 +52,7 @@
 	<view class="title">积分获取规则</view>
 	每<input placeholder="多少金额" style="border:1px solid #eee;margin:0 5px"></input>对应 <input placeholder="多少积分" style="border:1px solid #eee;margin:0 5px"></input>
 </view>
-<!-- 会员卡等级 -->
+<!-- 会员卡等级 如果是储值卡的时候显示-->
 <view class="cu-form-group" wx:if="{{cardTypePicker[cardTypeIndex]=='储值卡'}}">
 	<view class="title">会员卡等级</view>
 	<picker bindchange="cardGradeRulePickerChange" value="{{cardGradeRuleIndex}}" range="{{cardGradeRulePicker}}">
@@ -61,6 +61,7 @@
 		</view>
 	</picker>
 </view>
+<!-- 默认不显示，当会员卡类型为储值卡并且选择了会员卡等级类型后选择 -->
 <view wx:if="{{cardGradeRuleIndex!=null}}" wx:key='aa'>
 	<view wx:if="{{cardTypePicker[cardTypeIndex]=='储值卡' && cardGradeRulePicker[cardGradeRuleIndex]!='不设置会员卡等级' }}" wx:key="a">
 		<!-- ------------------------------------------------ -->
