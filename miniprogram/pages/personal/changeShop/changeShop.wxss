@@ -1,0 +1,72 @@
+.cu-form-group .title {
+  min-width: calc(5em + 30rpx);
+}
+/* 日期选择 */
+.picker_group {
+  height: 85rpx;
+  line-height: 85rpx;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  border-bottom: 1rpx solid #efefef;
+
+}
+
+.picker_group picker {
+  /* background-color: yellow; */
+  color: #64bff1;
+  height: 55rpx;
+  line-height: 55rpx;
+  margin: 0 2%;
+  padding: 0 2%;
+  border: 1rpx solid #64bff1;
+  border-radius: 30rpx;
+}
+/* pages/test/layout.wxss */
+
+/*横向布局  */
+.layout_horizontal{
+  /* height: 400rpx; */
+  display: flex;
+  /*row 横向  column 列表  */
+  flex-direction: row;
+}
+.layout_horizontal .one{
+  background-color:white ;
+  text-align:center;
+  padding:0px 5px;
+}
+.layout_horizontal  .left{
+  width:200rpx;
+  border-right:1px solid #eee;
+}
+.layout_horizontal .center{
+  flex:1;
+}
+.layout_horizontal  .right{
+  width:200rpx;
+  border-left:1px solid #eee;
+}
+
+.layout_horizontal input{
+  border:1px solid #eee;
+  margin: 5px 0px;
+}
+.layout_horizontal .one .rule{
+  display: flex;
+  justify-content: center;
+}
+.layout_horizontal .one .rule .txt{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/*划线  */
+.line {
+   background-color: blue;
+   height: 2rpx;
+   width: 100%;
+}

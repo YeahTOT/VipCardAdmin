@@ -54,6 +54,13 @@
 					"id": -1,
 					"name": "pages/makeCard/makeCard",
 					"pathName": "pages/makeCard/makeCard",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/personal/personal",
+					"pathName": "pages/personal/personal",
 					"scene": null
 				}
 			]

@@ -31,6 +31,12 @@
 			<button class="cu-btn bg-green shadow-blur round" style="width:80px">搜索</button>
 		</view>
 	</view>
+	<!-- 创建会员卡 -->
+	<navigator class="cu-bar bg-white solid-bottom margin-top" url="./makeCard/makeCard" open-type="navigate">
+		<view class="action">
+			<text class="cuIcon-tagfill text-orange "></text> 创建会员卡
+		</view>
+	</navigator>
 	<!-- 我的会员卡 -->
 	<view class="cu-bar bg-white solid-bottom margin-top " bindtap="showVip">
 		<view class="action">

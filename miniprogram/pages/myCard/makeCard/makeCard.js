@@ -12,10 +12,11 @@ Page({
     cardIsScore: false,//用户是否可以积分
     cardGradeRuleIndex: null,//会员卡等级下标
     cardGradeRulePicker: [],//会员卡等级规则
+    cardBackground:"",
     // 会员卡等级设置
     gradeList: ["",""],//等级列表
     ruleList: ["",""],//规则列表
-    discountList: ["",""]//折扣列表
+    discountList: ["",""],//折扣列表
   },
   showModal() {  
 
@@ -87,6 +88,19 @@ Page({
         ruleList:this.data.ruleList,
         discountList:this.data.discountList,
       })
+  },
+  // 选择图片
+  ChooseImage() {
+    wx.chooseImage({
+      count: 4, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album'], //从相册选择
+      success: (res) => {
+          this.setData({
+            cardBackground:res.tempFilePaths
+          })
+      }
+    });
   },
   /**
    * 生命周期函数--监听页面加载

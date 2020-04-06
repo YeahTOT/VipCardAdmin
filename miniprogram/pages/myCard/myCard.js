@@ -103,6 +103,12 @@ Page({
     })
     // 将个人信息放到本地缓存中
     wx.setStorageSync("userInfo", e.detail.userInfo)
+    // 将商家信息放到本地缓存中
+       // 将商家信息放到本地缓存中
+       wx.setStorageSync("shopInfo", {
+        shopName:nickName,
+        shopLogo:avatarUrl
+      })
   },
 
   // 查看 全部 会员卡信息点击事件
@@ -143,11 +149,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 如果存在个人信息，就可以直接登录
-    if (app.globalData.userInfo) {
+
+    // 如果存在商家信息，就可以直接登录
+    if (app.globalData.userInfo ) {
       this.setData({
         nickName: app.globalData.userInfo.nickName,
-        avatarUrl: app.globalData.userInfo.avatarUrl
+        avatarUrl: app.globalData.userInfo.avatarUrl,
+        shopName:app.globalData.shopInfo.shopName,
+        shopLogo:app.globalData.shopInfo.shopLogo
       })
       //获取排队信息
       // startTimer(this)
@@ -155,6 +164,7 @@ Page({
       dataInit(this)
       //将会员卡数据放到全局变量中
       wx.setStorageSync("cardList", this.data.vipCardList)
+      
     }
   },
 
@@ -162,14 +172,21 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log("mycard",app.globalData.userInfo)
+ // 如果存在商家信息，就可以直接登录
+ if (app.globalData.userInfo) {
+  this.setData({
+    nickName: app.globalData.userInfo.nickName,
+    avatarUrl: app.globalData.userInfo.avatarUrl,
+    shopName:app.globalData.shopInfo.shopName,
+    shopLogo:app.globalData.shopInfo.shopLogo
+  })}
   },
 
   /**

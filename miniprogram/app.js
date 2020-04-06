@@ -50,6 +50,7 @@ App({
   },
   globalData: {
     userInfo: wx.getStorageSync("userInfo"),
+    shopInfo: wx.getStorageSync("shopInfo"),
     openid: wx.getStorageSync("openid"),
     cardList: wx.getStorageSync("cardList")
   }

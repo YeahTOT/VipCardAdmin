@@ -11,10 +11,8 @@ Page({
     //属性
     nickName: "",
     avatarUrl: "",
-    ranking: "",//排队的名次，如果不存在则显示不在排队
-    shopId: "",//所排队的商家的id,
-    shopLogo: "",//商家logo
-    shopName: "",//商家name
+    shopLogo: "",//商家logo 默认为用户头像
+    shopName: "",//商家name 默认为用户微信名称
     vipCardList:[],//会员卡列表 对象数组
     //页面组件显示状态
     isShowVip:false,//是否展开会员卡列表 true展开
@@ -99,10 +97,17 @@ Page({
     })
     this.setData({
       nickName: nickName,
-      avatarUrl: avatarUrl
+      avatarUrl: avatarUrl,
+      shopName:nickName,
+      shopLogo:avatarUrl
     })
     // 将个人信息放到本地缓存中
     wx.setStorageSync("userInfo", e.detail.userInfo)
+    // 将商家信息放到本地缓存中
+    wx.setStorageSync("shopInfo", {
+      shopName:nickName,
+      shopLogo:avatarUrl
+    })
   },
 
   // 查看 全部 会员卡信息点击事件
@@ -143,11 +148,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 如果存在个人信息，就可以直接登录
-    if (app.globalData.userInfo) {
+    console.log("personal",app.globalData.userInfo)
+    console.log("personal",app.globalData.shopInfo)
+    // 如果存在商家信息，就可以直接登录
+    if (app.globalData.userInfo && app.globalData.shopInfo) {
       this.setData({
         nickName: app.globalData.userInfo.nickName,
-        avatarUrl: app.globalData.userInfo.avatarUrl
+        avatarUrl: app.globalData.userInfo.avatarUrl,
+        shopName:app.globalData.shopInfo.shopName,
+        shopLogo:app.globalData.shopInfo.shopLogo
       })
       //获取排队信息
       // startTimer(this)
@@ -169,7 +178,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
+    console.log("personal",app.globalData.userInfo)
+    console.log("personal",app.globalData.shopInfo)
+    if (app.globalData.userInfo) {
+      this.setData({
+        nickName: app.globalData.userInfo.nickName,
+        avatarUrl: app.globalData.userInfo.avatarUrl,
+        shopName:app.globalData.shopInfo.shopName,
+        shopLogo:app.globalData.shopInfo.shopLogo
+      })}
   },
 
   /**

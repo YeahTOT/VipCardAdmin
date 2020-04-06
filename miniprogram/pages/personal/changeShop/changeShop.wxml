@@ -1,0 +1,6 @@
+<!--pages/personal/changeShop/changeShop.wxml-->
+<!-- 会员卡名称 -->
+<view class="cu-form-group margin-top">
+	<view class="title">店铺名称</view>
+	<input value="{{shopName}}"></input>
+</view>

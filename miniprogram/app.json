@@ -1,9 +1,10 @@
 {
   "pages": [
     "pages/personal/personal",
-    "pages/makeCard/makeCard",
+    "pages/personal/changeShop/changeShop",
     "pages/myCard/myCard",
     "pages/myCard/vipCard/vipCard",
+    "pages/myCard/makeCard/makeCard",
     "pages/cashier/cashier"
     
   ],
@@ -15,13 +16,7 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar":{ 
-    "list":[
-      {
-        "pagePath":"pages/makeCard/makeCard",
-        "text":"创建会员卡",
-        "iconPath":"images/tabBar/makeCard.png",
-        "selectedIconPath": "images/tabBar/makeCardActive.png"
-      },{
+    "list":[{
         "pagePath": "pages/myCard/myCard",
         "text": "会员卡管理",
         "iconPath": "images/tabBar/card.png",

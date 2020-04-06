@@ -43,7 +43,7 @@
 </view>
 <!-- 是否可以积分按钮 -->
 <!-- <view class="cu-form-group" wx:if="{{cardTypePicker[cardTypeIndex]=='储值卡'}}"> -->
-<view class="cu-form-group" >
+<view class="cu-form-group">
 	<view class="title">是否有积分功能</view>
 	<switch bindchange="cardIsScoreChange"></switch>
 </view>
@@ -128,5 +128,29 @@
 <!-- 充值金额对应的次数 -->
 <view class="cu-form-group" wx:if="{{cardTypePicker[cardTypeIndex]=='计次卡'}}" wx:key="cardMoneyToTimes">
 	<view class="title">充值金额对应的次数</view>
-	<input placeholder="输入充值金额对应的次数"></input>
+	每<input placeholder="多少金额" style="border:1px solid #eee;margin:0 5px"></input>对应 <input placeholder="多少次数" style="border:1px solid #eee;margin:0 5px"></input>
+	<!-- <input placeholder="输入充值金额对应的次数"></input> -->
+</view>
+<!-- 上传会员卡背景图片 -->
+<view class="cu-bar bg-white margin-top">
+	<view class="action">
+		上传会员卡的背景图片
+	</view>
+</view>
+<view class="cu-form-group">
+	<view class="grid col-4 grid-square flex-sub">
+		<view class="bg-img" wx:if="{{cardBackground}}" wx:key="cardBackground" bindtap="ViewImage" data-url="{{cardBackground}}">
+			<image src='{{cardBackground}}' mode='aspectFill'></image>
+			<view class="cu-tag bg-red" catchtap="DelImg" >
+				<text class="cuIcon-close"></text>
+			</view>
+		</view>
+		<view class="solids" bindtap="ChooseImage" >
+			<text class="cuIcon-cameraadd"></text>
+		</view>
+	</view>
+</view>
+<!-- 提交按钮 -->
+<view class="flex flex-direction">
+  <button class="cu-btn bg-red margin-tb-sm lg">提交</button>
 </view>
