@@ -148,10 +148,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("personal",app.globalData.userInfo)
-    console.log("personal",app.globalData.shopInfo)
+    console.log(app.globalData.shopInfo)
     // 如果存在商家信息，就可以直接登录
-    if (app.globalData.userInfo && app.globalData.shopInfo) {
+    if (app.globalData.shopInfo) {
       this.setData({
         nickName: app.globalData.userInfo.nickName,
         avatarUrl: app.globalData.userInfo.avatarUrl,
@@ -178,10 +177,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
-    console.log("personal",app.globalData.userInfo)
-    console.log("personal",app.globalData.shopInfo)
-    if (app.globalData.userInfo) {
+    if (app.globalData.shopInfo) {
       this.setData({
         nickName: app.globalData.userInfo.nickName,
         avatarUrl: app.globalData.userInfo.avatarUrl,
