@@ -273,99 +273,55 @@ function stopTimer(){
 function dataInit(that){
   that.setData({
     vipCardList:[
-     
       {
         "cardID":"032702",
         "logo":"https://7669-vipcard-3y6o1-1301438009.tcb.qcloud.la/image/google.png?sign=d24081f06d9b12f718953b0291f95c79&t=1585280719",
-        "bussinessName":"季季红",
         "cardName":"季季红会员卡",
         "cardTypeList":["储值卡","积分卡"],
-        "cardAddress":"江西省南昌市南昌航空大学669号旁边的乐世界二楼",
         "cardTimeStart":"2020-3-20",
         "cardTimeEnd":"2020-6-20",
-        "bussinessPhone":"1008611",
-        "cardMoney":"200",
-        "cardScore":"60",
         "cardStatus":"未过期",
         "cardNode":"这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡",
-        "cardRecord":[
-          {
-            "recordType":"充值",
-            "recordMoney":"+66",
-            "recordDate":"2018-02-02",
-            "recordTime":"16:40"
-          },
-          {
-            "recordType":"消费",
-            "recordMoney":"-66",
-            "recordDate":"2019-02-02",
-            "recordTime":"16:40"
-          },
-          {
-            "recordType":"消费",
-            "recordMoney":"-66",
-            "recordDate":"2020-02-02",
-            "recordTime":"16:40"
-          },
-        ]
+      },
+      {
+        "cardID":"032702",
+        "logo":"https://7669-vipcard-3y6o1-1301438009.tcb.qcloud.la/image/google.png?sign=d24081f06d9b12f718953b0291f95c79&t=1585280719",
+        "cardName":"季季红会员卡",
+        "cardTypeList":["储值卡","积分卡"],
+        "cardTimeStart":"2020-3-20",
+        "cardTimeEnd":"2020-6-20",
+        "cardStatus":"未过期",
+        "cardNode":"这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡",
+      },
+      {
+        "cardID":"032702",
+        "logo":"https://7669-vipcard-3y6o1-1301438009.tcb.qcloud.la/image/google.png?sign=d24081f06d9b12f718953b0291f95c79&t=1585280719",
+        "cardName":"季季红会员卡",
+        "cardTypeList":["储值卡","积分卡"],
+        "cardTimeStart":"2020-3-20",
+        "cardTimeEnd":"2020-6-20",
+        "cardStatus":"未过期",
+        "cardNode":"这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡",
       },
       {
         "cardID":"032703",
         "logo":"https://7669-vipcard-3y6o1-1301438009.tcb.qcloud.la/image/google.png?sign=d24081f06d9b12f718953b0291f95c79&t=1585280719",
-        "bussinessName":"香锅",
-        "cardName":"香锅会员卡",
-        "cardTypeList":["储值卡"],
-        "cardAddress":"南昌航空大学669号",
+        "cardName":"季季红会员卡2",
+        "cardTypeList":["储值卡","积分卡"],
         "cardTimeStart":"2020-3-20",
         "cardTimeEnd":"2020-6-20",
-        "bussinessPhone":"1008611",
-        "cardMoney":"300",
         "cardStatus":"未过期",
-        "cardNode":"这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡"
+        "cardNode":"这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡",
       },
       {
         "cardID":"032704",
         "logo":"https://7669-vipcard-3y6o1-1301438009.tcb.qcloud.la/image/google.png?sign=d24081f06d9b12f718953b0291f95c79&t=1585280719",
-        "bussinessName":"健身房",
-        "cardName":"健身房会员卡",
-        "cardTypeList":["积分卡","计次卡"],
-        "cardAddress":"南昌航空大学669号",
+        "cardName":"季季红会员卡3",
+        "cardTypeList":["储值卡","积分卡"],
         "cardTimeStart":"2020-3-20",
         "cardTimeEnd":"2020-6-20",
-        "bussinessPhone":"1008611",
-        "cardScore":"80",
-        "cardTimes":"12",
-        "cardStatus":"已过期",
-        "cardNode":"这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡"
-      },
-      {
-        "cardID":"032705",
-        "logo":"https://7669-vipcard-3y6o1-1301438009.tcb.qcloud.la/image/google.png?sign=d24081f06d9b12f718953b0291f95c79&t=1585280719",
-        "bussinessName":"奶茶店",
-        "cardName":"奶茶会员卡",
-        "cardTypeList":["储值卡"],
-        "cardAddress":"南昌航空大学669号",
-        "cardTimeStart":"2020-3-20",
-        "cardTimeEnd":"2020-6-20",
-        "bussinessPhone":"1008611",
-        "cardMoney":"35",
-        "cardStatus":"已过期",
-        "cardNode":"这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡"
-      },
-      {
-        "cardID":"032701",
-        "logo":"https://7669-vipcard-3y6o1-1301438009.tcb.qcloud.la/image/google.png?sign=d24081f06d9b12f718953b0291f95c79&t=1585280719",
-        "bussinessName":"理发店",
-        "cardName":"老顾客会员卡",
-        "cardTypeList":["积分卡","计次卡"],
-        "cardAddress":"南昌航空大学669号",
-        "cardTimeStart":"2020-3-20",
-        "cardTimeEnd":"2020-6-20",
-        "bussinessPhone":"1008611",
-        "cardScore":"66",
-        "cardTimes":12,
         "cardStatus":"未过期",
-        "cardNode":"这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡"
+        "cardNode":"这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡",
       },
     ],
   })
