@@ -1,8 +1,8 @@
 <!--pages/personal/personal.wxml-->
 
-<view style="margin:240rpx auto;text-align:center" wx:if="{{!nickName}}">
+<view style="margin:240rpx auto;text-align:center" wx:if="{{!admin.openid}}">
 	<view class="padding">
-		<view class="cu-avatar xl round" style="background-image:url({{avatarUrl}});"></view>
+		<view class="cu-avatar xl round" style="background-image:url({{admin.adminUrl}});"></view>
 	</view>
 	<view class="padding flex flex-direction">
 		<button class="cu-btn bg-red margin-tb-sm lg" open-type="getUserInfo" bindgetuserinfo="getuserinfo">点击授权登录</button>
@@ -12,8 +12,8 @@
 <block wx:else>
 	<!-- 个人信息 -->
 	<view class="padding bg-white text-grey">
-		<view class="cu-avatar lg round margin-right" style="background-image:url({{avatarUrl}});"></view>
-		{{nickName}}
+		<view class="cu-avatar lg round margin-right" style="background-image:url({{admin.adminUrl}});"></view>
+		{{admin.adminName}}
 		<button class="cu-avatar lg fr " bindtap='scancode'>
 			<image mode="widthFix" src="../../images/look.png"></image>
 		</button>

@@ -17,6 +17,7 @@ Page({
     var id = options.cardID
     var cardList = app.globalData.cardList
     var card = fingById(cardList,id)
+    console.log("card",card)
     this.setData({
       cardID:id,
       card:card

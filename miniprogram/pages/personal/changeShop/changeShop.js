@@ -6,13 +6,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shopName: "", // 商家名称
-    shopLogo: "", // 商家logo
-    shopLocation: "", // 商家地址
-    shopPhone: "", // 店铺电话
+    shop:{
+      shopName:"",//商家name 默认为用户微信名称
+      shopLogo:"",//商家logo 默认为用户头像
+      shopAddress:"",
+      shopPhone:"",
+      shopNode:"",
+      shopType: "" // 商家类型
+    },
     shopTypePicker: [], // 商家类型列表
     shopTypeIndex: "", // 商家类型的下标
-    shopType: "" // 商家类型
+    
   },
   // model窗口
   showModal(e) {
@@ -35,7 +39,9 @@ Page({
   shopTypePickerChange(e) {
     this.setData({
       shopTypeIndex: e.detail.value,
-      shopType: this.data.shopTypePicker[e.detail.value]
+      shop:{
+        shopType: this.data.shopTypePicker[e.detail.value]
+      }
     })
     // 如果选择自定义，则弹出输入框
     if(this.data.shopType == "自定义"){
@@ -47,19 +53,26 @@ Page({
   // 输入商家名称
   inputShopName(e) {
     this.setData({
-      shopName: e.detail.value
+      shop:{
+         shopName: e.detail.value
+      }
     })
   },
   // 输入自定义商家类型
   inputShopType(e){
     this.setData({
-      shopType: e.detail.value
+      shop:{
+        shopType: e.detail.value
+      }
     })
   },
   // 输入店铺电话
   inputShopPhone(e){
     this.setData({
-      shopPhone: e.detail.value
+      shop:{
+        shopPhone: e.detail.value
+      }
+     
     })
   },
   // 选择图片
@@ -70,7 +83,9 @@ Page({
       sourceType: ['album'], //从相册选择
       success: (res) => {
         this.setData({
-          shopLogo: res.tempFilePaths
+          shop:{
+            shopLogo: res.tempFilePaths
+          }
         })
       }
     });
@@ -86,7 +101,9 @@ Page({
         console.log(res.name)
         var location = res.address
         that.setData({
-          shopLocation: location
+          shop:{
+            shopLocation: location
+          }  
         })
       }
     })
@@ -95,11 +112,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData.shopInfo)
-    if (app.globalData.shopInfo) {
+    console.log(app.globalData.shop)
+    if (app.globalData.shop) {
       this.setData({
-        shopName: app.globalData.shopInfo.shopName,
-        shopLogo: app.globalData.shopInfo.shopLogo
+        shop:{
+          shopName: app.globalData.shop.shopName,
+          shopLogo: app.globalData.shop.shopLogo
+        }
       })
     }
     // 初始数据加载

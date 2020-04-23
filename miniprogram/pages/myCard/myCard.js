@@ -8,14 +8,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    //属性
-    nickName: "",
-    avatarUrl: "",
-    ranking: "",//排队的名次，如果不存在则显示不在排队
-    shopId: "",//所排队的商家的id,
-    shopLogo: "",//商家logo
-    shopName: "",//商家name
-    vipCardList:[],//会员卡列表 对象数组
+     //属性
+     vipCardList:[],//会员卡列表 对象数组
+     admin:{
+       openid:"",
+       adminName: "",
+       adminUrl: ""
+     },
+     shop:{
+       shopName:"",//商家name 默认为用户微信名称
+       shopLogo:"",//商家logo 默认为用户头像
+       shopAddress:"",
+       shopPhone:"",
+       shopNode:""
+     },
     //页面组件显示状态
     isShowVip:false,//是否展开会员卡列表 true展开
     cardStatus:"all",// 显示的什么类型的会员卡 0 已过期 1 未过期 3 全部
@@ -61,56 +67,43 @@ Page({
     })
   },
 
-  // 授权登录事件
-  getuserinfo(e) {
-
-    const nickName = e.detail.userInfo.nickName
-    const avatarUrl = e.detail.userInfo.avatarUrl
-
-    wx.cloud.callFunction({
-      name: 'getopenid',
-      complete: res => {
-        console.log(res)
-        //获取用户的openid
-        const openid = res.result.openid
-        //将openid存储到本地
-        wx.setStorageSync("openid", openid)
-        //判断数据中是否存在给openid
-        db.collection('user').where({
-          _openid: openid
-        }).get().then(res => {
-          console.log(res)
-          if (res.data == "") {
-            console.log("数据库中没有数据")
-            db.collection('user').add({
-              data: {
-                nickName: nickName,
-                avatarUrl: avatarUrl,
-                time: util.formatTime(new Date())
-              }
-            }).then(res => {
-              console.log("添加成功")
-            })
-          } else {
-            console.log("已经存在")
-          }
-        })
-      }
-    })
-    this.setData({
-      nickName: nickName,
-      avatarUrl: avatarUrl
-    })
-    // 将个人信息放到本地缓存中
-    wx.setStorageSync("userInfo", e.detail.userInfo)
-    // 将商家信息放到本地缓存中
-       // 将商家信息放到本地缓存中
-       wx.setStorageSync("shopInfo", {
-        shopName:nickName,
-        shopLogo:avatarUrl
+ // 授权登录事件
+getuserinfo(e) {
+  console.log(e)
+  const adminName = e.detail.userInfo.nickName // 管理员姓名
+  const adminUrl = e.detail.userInfo.avatarUrl // 头像路径
+  console.log("adminName",adminName)
+  console.log("adminUrl",adminUrl)
+  wx.cloud.callFunction({
+    name: 'getopenid',
+    complete: res => {
+      console.log("res",res)
+      //获取用户的openid
+      const openid = res.result.openid
+      this.setData({
+        admin:{
+          openid:openid,
+          adminName: adminName,
+          adminUrl: adminUrl
+        },
       })
-  },
-
+       // 将个人信息放到本地缓存中
+       wx.setStorageSync("admin", this.data.admin)
+    }
+  })
+     // 更具openid查询到shop的信息，保存到本地缓存中
+  this.setData({
+    shop:{
+      shopName:"tt",
+      shopLogo:"",
+      shopAddress:"河北",
+      shopPhone:"1008611",
+      shopNode:"欢迎光临"
+    }
+  })
+    // 将商家信息放到本地缓存中
+    wx.setStorageSync("shop", this.data.shop)
+},
   // 查看 全部 会员卡信息点击事件
   ClickCardStatus1:function(){
     this.setData({
@@ -149,17 +142,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log("admin",app.globalData.admin)
+    console.log("shop",app.globalData.shop)
     // 如果存在商家信息，就可以直接登录
-    if (app.globalData.userInfo ) {
+    if (app.globalData.admin && app.globalData.shop) {
       this.setData({
-        nickName: app.globalData.userInfo.nickName,
-        avatarUrl: app.globalData.userInfo.avatarUrl,
-        shopName:app.globalData.shopInfo.shopName,
-        shopLogo:app.globalData.shopInfo.shopLogo
+        admin:{
+          openid:app.globalData.admin.openid,
+          adminName: app.globalData.admin.adminName,
+          adminUrl: app.globalData.admin.adminUrl
+        },
+        shop:{
+          shopName:app.globalData.shop.adminName,
+          shopLogo:app.globalData.shop.shopLogo,
+          shopAddress:app.globalData.shop.shopAddress,
+          shopPhone:app.globalData.shop.shopPhone,
+          shopNode:app.globalData.shop.cardNode
+        }
       })
-      //获取排队信息
-      // startTimer(this)
       // 加载会员卡数据
       dataInit(this)
       //将会员卡数据放到全局变量中
@@ -178,15 +178,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("mycard",app.globalData.userInfo)
- // 如果存在商家信息，就可以直接登录
- if (app.globalData.userInfo) {
-  this.setData({
-    nickName: app.globalData.userInfo.nickName,
-    avatarUrl: app.globalData.userInfo.avatarUrl,
-    shopName:app.globalData.shopInfo.shopName,
-    shopLogo:app.globalData.shopInfo.shopLogo
-  })}
+   
   },
 
   /**

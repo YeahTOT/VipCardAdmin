@@ -9,11 +9,19 @@ Page({
    */
   data: {
     //属性
-    nickName: "",
-    avatarUrl: "",
-    shopLogo: "",//商家logo 默认为用户头像
-    shopName: "",//商家name 默认为用户微信名称
     vipCardList:[],//会员卡列表 对象数组
+    admin:{
+      openid:"",
+      adminName: "",
+      adminUrl: ""
+    },
+    shop:{
+      shopName:"",//商家name 默认为用户微信名称
+      shopLogo:"",//商家logo 默认为用户头像
+      shopAddress:"",
+      shopPhone:"",
+      shopNode:""
+    },
     //页面组件显示状态
     isShowVip:false,//是否展开会员卡列表 true展开
     cardStatus:"all",// 显示的什么类型的会员卡 0 已过期 1 未过期 3 全部
@@ -58,58 +66,44 @@ Page({
       }
     })
   },
-
-  // 授权登录事件
-  getuserinfo(e) {
-
-    const nickName = e.detail.userInfo.nickName
-    const avatarUrl = e.detail.userInfo.avatarUrl
-
-    wx.cloud.callFunction({
-      name: 'getopenid',
-      complete: res => {
-        console.log(res)
-        //获取用户的openid
-        const openid = res.result.openid
-        //将openid存储到本地
-        wx.setStorageSync("openid", openid)
-        //判断数据中是否存在给openid
-        db.collection('user').where({
-          _openid: openid
-        }).get().then(res => {
-          console.log(res)
-          if (res.data == "") {
-            console.log("数据库中没有数据")
-            db.collection('user').add({
-              data: {
-                nickName: nickName,
-                avatarUrl: avatarUrl,
-                time: util.formatTime(new Date())
-              }
-            }).then(res => {
-              console.log("添加成功")
-            })
-          } else {
-            console.log("已经存在")
-          }
-        })
-      }
-    })
-    this.setData({
-      nickName: nickName,
-      avatarUrl: avatarUrl,
-      shopName:nickName,
-      shopLogo:avatarUrl
-    })
-    // 将个人信息放到本地缓存中
-    wx.setStorageSync("userInfo", e.detail.userInfo)
+// 授权登录事件
+getuserinfo(e) {
+  console.log(e)
+  const adminName = e.detail.userInfo.nickName // 管理员姓名
+  const adminUrl = e.detail.userInfo.avatarUrl // 头像路径
+  console.log("adminName",adminName)
+  console.log("adminUrl",adminUrl)
+  wx.cloud.callFunction({
+    name: 'getopenid',
+    complete: res => {
+      console.log("res",res)
+      //获取用户的openid
+      const openid = res.result.openid
+      this.setData({
+        admin:{
+          openid:openid,
+          adminName: adminName,
+          adminUrl: adminUrl
+        },
+      })
+       // 将个人信息放到本地缓存中
+       wx.setStorageSync("admin", this.data.admin)
+    }
+  })
+     // 更具openid查询到shop的信息，保存到本地缓存中
+  this.setData({
+    shop:{
+      shopName:"tt",
+      shopLogo:"",
+      shopAddress:"河北",
+      shopPhone:"1008611",
+      shopNode:"欢迎光临"
+    }
+  })
     // 将商家信息放到本地缓存中
-    wx.setStorageSync("shopInfo", {
-      shopName:nickName,
-      shopLogo:avatarUrl
-    })
-  },
-
+    wx.setStorageSync("shop", this.data.shop)
+},
+  
   // 查看 全部 会员卡信息点击事件
   ClickCardStatus1:function(){
     this.setData({
@@ -148,21 +142,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData.shopInfo)
+    console.log("admin",app.globalData.admin)
+    console.log("shop",app.globalData.shop)
     // 如果存在商家信息，就可以直接登录
-    if (app.globalData.shopInfo) {
+    if (app.globalData.admin && app.globalData.shop) {
       this.setData({
-        nickName: app.globalData.userInfo.nickName,
-        avatarUrl: app.globalData.userInfo.avatarUrl,
-        shopName:app.globalData.shopInfo.shopName,
-        shopLogo:app.globalData.shopInfo.shopLogo
+        admin:{
+          openid:app.globalData.admin.openid,
+          adminName: app.globalData.admin.adminName,
+          adminUrl: app.globalData.admin.adminUrl
+        },
+        shop:{
+          shopName:app.globalData.shop.shopName,
+          shopLogo:app.globalData.shop.shopLogo,
+          shopAddress:app.globalData.shop.shopAddress,
+          shopPhone:app.globalData.shop.shopPhone,
+          shopNode:app.globalData.shop.shopNode
+        }
       })
       //获取排队信息
       // startTimer(this)
-      // 加载会员卡数据
-      dataInit(this)
-      //将会员卡数据放到全局变量中
-      wx.setStorageSync("cardList", this.data.vipCardList)
+      // // 加载会员卡数据
+      // dataInit(this)
+      // //将会员卡数据放到全局变量中
+      // wx.setStorageSync("cardList", this.data.vipCardList)
     }
   },
 
@@ -266,21 +269,21 @@ function stopTimer(){
   }
 }
 
+
 // 初始话页面数据 用于测试
 function dataInit(that){
   that.setData({
     vipCardList:[
-     
       {
         "cardID":"032702",
         "logo":"https://7669-vipcard-3y6o1-1301438009.tcb.qcloud.la/image/google.png?sign=d24081f06d9b12f718953b0291f95c79&t=1585280719",
-        "bussinessName":"季季红",
+        "shopName":"季季红",
         "cardName":"季季红会员卡",
         "cardTypeList":["储值卡","积分卡"],
-        "cardAddress":"江西省南昌市南昌航空大学669号旁边的乐世界二楼",
+        "shopAddress":"江西省南昌市南昌航空大学669号旁边的乐世界二楼",
         "cardTimeStart":"2020-3-20",
         "cardTimeEnd":"2020-6-20",
-        "bussinessPhone":"1008611",
+        "shopPhone":"1008611",
         "cardMoney":"200",
         "cardScore":"60",
         "cardStatus":"未过期",
@@ -309,13 +312,13 @@ function dataInit(that){
       {
         "cardID":"032703",
         "logo":"https://7669-vipcard-3y6o1-1301438009.tcb.qcloud.la/image/google.png?sign=d24081f06d9b12f718953b0291f95c79&t=1585280719",
-        "bussinessName":"香锅",
+        "shopName":"香锅",
         "cardName":"香锅会员卡",
         "cardTypeList":["储值卡"],
-        "cardAddress":"南昌航空大学669号",
+        "shopAddress":"南昌航空大学669号",
         "cardTimeStart":"2020-3-20",
         "cardTimeEnd":"2020-6-20",
-        "bussinessPhone":"1008611",
+        "shopPhone":"1008611",
         "cardMoney":"300",
         "cardStatus":"未过期",
         "cardNode":"这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡"
@@ -323,13 +326,13 @@ function dataInit(that){
       {
         "cardID":"032704",
         "logo":"https://7669-vipcard-3y6o1-1301438009.tcb.qcloud.la/image/google.png?sign=d24081f06d9b12f718953b0291f95c79&t=1585280719",
-        "bussinessName":"健身房",
+        "shopName":"健身房",
         "cardName":"健身房会员卡",
         "cardTypeList":["积分卡","计次卡"],
-        "cardAddress":"南昌航空大学669号",
+        "shopAddress":"南昌航空大学669号",
         "cardTimeStart":"2020-3-20",
         "cardTimeEnd":"2020-6-20",
-        "bussinessPhone":"1008611",
+        "shopPhone":"1008611",
         "cardScore":"80",
         "cardTimes":"12",
         "cardStatus":"已过期",
@@ -338,13 +341,13 @@ function dataInit(that){
       {
         "cardID":"032705",
         "logo":"https://7669-vipcard-3y6o1-1301438009.tcb.qcloud.la/image/google.png?sign=d24081f06d9b12f718953b0291f95c79&t=1585280719",
-        "bussinessName":"奶茶店",
+        "shopName":"奶茶店",
         "cardName":"奶茶会员卡",
         "cardTypeList":["储值卡"],
-        "cardAddress":"南昌航空大学669号",
+        "shopAddress":"南昌航空大学669号",
         "cardTimeStart":"2020-3-20",
         "cardTimeEnd":"2020-6-20",
-        "bussinessPhone":"1008611",
+        "shopPhone":"1008611",
         "cardMoney":"35",
         "cardStatus":"已过期",
         "cardNode":"这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡这是用于测试的卡"
@@ -352,13 +355,13 @@ function dataInit(that){
       {
         "cardID":"032701",
         "logo":"https://7669-vipcard-3y6o1-1301438009.tcb.qcloud.la/image/google.png?sign=d24081f06d9b12f718953b0291f95c79&t=1585280719",
-        "bussinessName":"理发店",
+        "shopName":"理发店",
         "cardName":"老顾客会员卡",
         "cardTypeList":["积分卡","计次卡"],
-        "cardAddress":"南昌航空大学669号",
+        "shopAddress":"南昌航空大学669号",
         "cardTimeStart":"2020-3-20",
         "cardTimeEnd":"2020-6-20",
-        "bussinessPhone":"1008611",
+        "shopPhone":"1008611",
         "cardScore":"66",
         "cardTimes":12,
         "cardStatus":"未过期",

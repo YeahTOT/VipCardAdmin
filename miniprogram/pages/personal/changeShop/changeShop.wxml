@@ -1,7 +1,7 @@
 <!-- 店铺名称 -->
 <view class="cu-form-group margin-top">
 	<view class="title">店铺名称</view>
-	<input bindinput="inputShopName" value="{{shopName}}"></input>
+	<input bindinput="inputShopName" value="{{shop.shopName}}"></input>
 </view>
 <!-- 上传logo -->
 <!-- 提示 -->
@@ -13,8 +13,8 @@
 <!-- 上传图片按钮 -->
 <view class="cu-form-group">
 	<view class="grid col-4 grid-square flex-sub">
-		<view class="bg-img" wx:if="{{shopLogo}}" wx:key="shopLogo" bindtap="ViewImage" data-url="{{shopLogo}}">
-			<image src='{{shopLogo}}' mode='aspectFill'></image>
+		<view class="bg-img" wx:if="{{shop.shopLogo}}" wx:key="shopLogo" bindtap="ViewImage" data-url="{{shop.shopLogo}}">
+			<image src='{{shop.shopLogo}}' mode='aspectFill'></image>
 			<view class="cu-tag bg-red" catchtap="DelImg">
 				<text class="cuIcon-close"></text>
 			</view>
@@ -43,7 +43,7 @@
 <!-- 店铺电话 -->
 <view class="cu-form-group">
 	<view class="title">店铺电话</view>
-	<input bindinput="inputShopPhone" value="{{shopPhone}}"></input>
+	<input bindinput="inputShopPhone" value="{{shop.shopPhone}}"></input>
 </view>
 <!-- 商家介绍 -->
 <view class="cu-form-group align-start">

@@ -49,9 +49,8 @@ App({
     })
   },
   globalData: {
-    userInfo: wx.getStorageSync("userInfo"),
-    shopInfo: wx.getStorageSync("shopInfo"),
-    openid: wx.getStorageSync("openid"),
+    admin: wx.getStorageSync("admin"),
+    shop: wx.getStorageSync("shop"),
     cardList: wx.getStorageSync("cardList")
   }
 })
