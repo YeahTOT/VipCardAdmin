@@ -1,5 +1,11 @@
 <!--pages/myCard/vipCard/vipCard.wxml-->
 <card card="{{card}}"></card>
+<view class="bg-white" style="margin:20rpx">
+	<view>
+		<view style="float:left;">使用说明：</view>
+		<view style="display:inline-block;width:500rpx">{{card.cardNode}}</view>
+	</view>
+</view>
 <!-- 标签 -->
   <navigator class="cu-bar bg-white solid-bottom margin-top" url="./record/record" open-type="navigate">
     <view class="action">

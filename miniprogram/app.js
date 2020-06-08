@@ -1,7 +1,8 @@
 //app.js
 App({
   onLaunch: function() {
-
+    // 服务器域名
+    wx.setStorageSync("url", "http://localhost:8081/vipcard/")
     wx.cloud.init({
       env:'vipcard-3y6o1',
       traceUser:true
@@ -50,7 +51,7 @@ App({
   },
   globalData: {
     admin: wx.getStorageSync("admin"),
-    shop: wx.getStorageSync("shop"),
-    cardList: wx.getStorageSync("cardList")
+    store: wx.getStorageSync("store"),
+    url:wx.getStorageSync("url")
   }
 })

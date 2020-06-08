@@ -53,8 +53,8 @@
 			<text class="cardStatus {{cardStatus3}}" bindtap="ClickCardStatus3">已过期</text>
 		</view>
 		<!-- 循环vipCardList -->
-		<block wx:for="{{vipCardList}}" wx:key="vipCard">
-			<navigator url="vipCard/vipCard?cardID={{item.cardID}}" wx:if="{{item.cardStatus == cardStatus || cardStatus == 'all'}}">
+		<block wx:for="{{cardList}}" wx:key="cardList">
+			<navigator url="vipCard/vipCard?cardID={{item.storeCardId}}" wx:if="{{item.cardStatus == cardStatus || cardStatus == 'all'}}">
 				<card card="{{item}}"></card>
 			</navigator>
 		</block>

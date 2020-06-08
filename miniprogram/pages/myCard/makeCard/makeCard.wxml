@@ -3,12 +3,12 @@
 <!-- 会员卡名称 -->
 <view class="cu-form-group margin-top">
 	<view class="title">会员卡名称</view>
-	<input placeholder="输入会员卡名称"></input>
+	<input placeholder="输入会员卡名称"  bindinput="input_cardName"></input>
 </view>
 <!-- 发卡数量 -->
 <view class="cu-form-group">
 	<view class="title">发卡数量</view>
-	<input placeholder="输入发卡数量"></input>
+	<input placeholder="输入发卡数量"  bindinput="input_cardNum"></input>
 </view>
 <!-- 设置有效期 -->
 <view class="cu-form-group">
@@ -62,8 +62,7 @@
 	</picker>
 </view>
 <!-- 默认不显示，当会员卡类型为储值卡并且选择了会员卡等级类型后选择 -->
-<view wx:if="{{cardGradeRuleIndex!=null}}" wx:key='aa'>
-	<view wx:if="{{cardTypePicker[cardTypeIndex]=='储值卡' && cardGradeRulePicker[cardGradeRuleIndex]!='不设置会员卡等级' }}" wx:key="a">
+	<view wx:if="{{cardGradeRuleIndex!=null&&cardTypePicker[cardTypeIndex]=='储值卡' && cardGradeRulePicker[cardGradeRuleIndex]!='不设置会员卡等级' }}" wx:key="a">
 		<!-- ------------------------------------------------ -->
 		<!-- 会员卡等级规则设置 -->
 		<view class="layout_horizontal" style="border:1px 0px solid #eee">
@@ -78,7 +77,7 @@
 				<view>折扣</view>
 			</view>
 		</view>
-		<block wx:for="{{gradeList}}" wx:key="gradeList">
+		<block wx:for="{{gradingList}}" wx:key="gradingList">
 			<view class="layout_horizontal" style="border:1px 0px solid #eee">
 				<!-- 左侧等级部分 -->
 				<view class="one left" style="width:200rpx;border-right:1px solid #eee;">
@@ -117,7 +116,6 @@
 			</view>
 		</view>
 	</view>
-</view>
 <!-- ---------------------------------------------------- -->
 
 <!-- 首充金额 -->
@@ -152,5 +150,5 @@
 </view>
 <!-- 提交按钮 -->
 <view class="flex flex-direction">
-  <button class="cu-btn bg-red margin-tb-sm lg">提交</button>
+  <button class="cu-btn bg-red margin-tb-sm lg" bindtap="submitCard">提交</button>
 </view>

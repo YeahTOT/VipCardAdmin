@@ -1,7 +1,7 @@
 <!-- 店铺名称 -->
 <view class="cu-form-group margin-top">
 	<view class="title">店铺名称</view>
-	<input bindinput="inputShopName" value="{{shop.shopName}}"></input>
+	<input bindinput="inputstoreName" value="{{store.storeName}}" ></input>
 </view>
 <!-- 上传logo -->
 <!-- 提示 -->
@@ -13,8 +13,8 @@
 <!-- 上传图片按钮 -->
 <view class="cu-form-group">
 	<view class="grid col-4 grid-square flex-sub">
-		<view class="bg-img" wx:if="{{shop.shopLogo}}" wx:key="shopLogo" bindtap="ViewImage" data-url="{{shop.shopLogo}}">
-			<image src='{{shop.shopLogo}}' mode='aspectFill'></image>
+		<view class="bg-img" wx:if="{{store.storeLogo}}" wx:key="storeLogo" bindtap="ViewImage" data-url="{{store.storeLogo}}">
+			<image src='{{store.storeLogo}}' mode='aspectFill'></image>
 			<view class="cu-tag bg-red" catchtap="DelImg">
 				<text class="cuIcon-close"></text>
 			</view>
@@ -27,9 +27,9 @@
 <!-- 商家类型 -->
 <view class="cu-form-group ">
 	<view class="title">商家类型</view>
-	<picker bindchange="shopTypePickerChange" value="{{shopTypeIndex}}" range="{{shopTypePicker}}">
+	<picker bindchange="storeTypePickerChange" value="{{storeTypeIndex}}" range="{{storeTypePicker}}">
 		<view class="picker">
-			{{shopType?shopType:'选择商家类型'}}
+			{{store.storeType?store.storeType:'选择商家类型'}}
 		</view>
 	</picker>
 </view>
@@ -37,26 +37,26 @@
 <view class="cu-form-group ">
 	<view class="title">详细地址</view>
 	<view class="picker" bindtap='getLocation'>
-		{{shopLocation?shopLocation:'点击选择地址'}}
+		{{store.storeAddress?store.storeAddress:'点击选择地址'}}
 	</view>
 </view>
 <!-- 店铺电话 -->
 <view class="cu-form-group">
 	<view class="title">店铺电话</view>
-	<input bindinput="inputShopPhone" value="{{shop.shopPhone}}"></input>
+	<input bindinput="inputstorePhone" value="{{store.storePhone}}"></input>
 </view>
 <!-- 商家介绍 -->
 <view class="cu-form-group align-start">
 	<view class="title">商家介绍</view>
-	<textarea maxlength="-1" bindinput="textareaBInput" value="请输入商家介绍" disabled="{{modelShopType}}"></textarea>
+	<textarea maxlength="-1" bindinput="textareaBInput" value="{{store.storeNode}}" disabled="{{modelstoreType}}"></textarea>
 </view>
 <!-- 提交按钮 -->
 <view class="flex flex-direction">
-	<button class="cu-btn bg-red margin-tb-sm lg">确定修改</button>
+	<button class="cu-btn bg-red margin-tb-sm lg" bindtap="changeStore">确定修改</button>
 </view>
 
 <!-- model -->
-<view class="cu-modal {{modelShopType?'show':''}}">
+<view class="cu-modal {{modelstoreType?'show':''}}">
 	<view class="cu-dialog">
 		<view class="cu-bar bg-white justify-end">
 			<view class="content">自定义类型</view>
@@ -65,12 +65,12 @@
 			</view>
 		</view>
 		<view class="padding-xl">
-			<input placeholder="在此处输入自定义类型" bindinput="inputShopType"></input>
+			<input placeholder="在此处输入自定义类型" bindinput="inputstoreType"></input>
 		</view>
 		<view class="cu-bar bg-white justify-between">
 			<view class="action">
 				<button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
-				<button class="cu-btn bg-green margin-left" bindtap="addShopType">确定</button>
+				<button class="cu-btn bg-green margin-left" bindtap="addstoreType">确定</button>
 			</view>
 		</view>
 	</view>
