@@ -1,5 +1,12 @@
 {
   "pages": [
+
+    "pages/user/index/index",
+    "pages/user/personal/personal",
+    "pages/user/personal/vipCard/vipCard",
+    "pages/user/personal/vipCard/record/record",
+    "pages/user/time/time",
+
     "pages/admin/personal/personal",
     "pages/admin/personal/changeShop/changeShop",
     "pages/admin/myCard/myCard",

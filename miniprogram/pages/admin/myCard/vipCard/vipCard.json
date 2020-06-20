@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "card":"../../../components/card/card"
+    "card":"../../../../components/admin/card/card"
   }
 }

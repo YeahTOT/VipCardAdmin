@@ -51,6 +51,12 @@ App({
     })
   },
   globalData: {
+    // user全局变量
+    user: wx.getStorageSync("user"),
+    url:wx.getStorageSync("url"),
+    storeOpenid:wx.getStorageSync("storeOpenid"),
+
+    // 管理员全局变量
     admin: wx.getStorageSync("admin"),
     store: wx.getStorageSync("store"),
     url:wx.getStorageSync("url")

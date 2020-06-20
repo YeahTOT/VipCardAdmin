@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "card":"../../../../components/user/card/card",
+    "grid":"../../../../components/user/grid/grid"
+  }
+}

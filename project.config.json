@@ -49,7 +49,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -59,29 +59,16 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/myCard/myCard",
-					"pathName": "pages/myCard/myCard",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/makeCard/makeCard",
-					"pathName": "pages/makeCard/makeCard",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/personal/personal",
-					"pathName": "pages/personal/personal",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "pages/admin/personal/personal",
 					"pathName": "pages/admin/personal/personal",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user/personal/personal",
+					"pathName": "pages/user/personal/personal",
+					"query": "",
 					"scene": null
 				}
 			]

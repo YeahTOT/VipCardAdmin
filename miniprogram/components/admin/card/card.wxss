@@ -1,0 +1,11 @@
+/* components/card/card.wxss */
+.vipCard {
+  float: left;
+  
+}
+.tag{
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  width:220rpx
+}
