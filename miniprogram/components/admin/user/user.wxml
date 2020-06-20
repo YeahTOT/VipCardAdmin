@@ -1,0 +1,16 @@
+<view class="bg-gradual-blue padding radius shadow-blur" style="margin:10px">
+	<!-- 左侧logo -->
+	<view class="vipCard">
+		<view class="cu-avatar round " style="background-image:url({{ranking.user.avatarUrl}});"></view>
+	</view>
+	<!-- 中间的会员卡信息 -->
+	<view class="" style="padding:6px; display:inline-block">
+		<view>
+			<view>{{ranking.user.userName}}</view>
+		</view>
+	</view>
+
+<view class="fr"></view>
+
+
+</view>

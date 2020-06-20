@@ -13,10 +13,10 @@
 		<view class="cu-avatar lg round margin-right" style="background-image:url({{admin.adminUrl}});"></view>
 		{{admin.adminName}}
 		<button class="cu-avatar lg fr " bindtap='scancode'>
-			<image mode="widthFix" src="../../images/look.png"></image>
+			<image mode="widthFix" src="../../../images/look.png"></image>
 		</button>
 		<button class="cu-avatar lg fr" style="margin-right:10px">
-			<image mode="widthFix" src="../../images/look2.png"></image>
+			<image mode="widthFix" src="../../../images/look2.png"></image>
 		</button>
 	</view>
 	<!-- 功能列表 -->
@@ -33,7 +33,7 @@
 	</navigator>
 	<navigator class="cu-bar bg-white solid-bottom margin-top" url="./record/record" open-type="navigate">
 		<view class="action">
-			<text class="cuIcon-tagfill text-orange "></text> 给指定用户消费？
+			<text class="cuIcon-tagfill text-orange "></text> 给指定用户消费
 		</view>
 	</navigator>
 </block>

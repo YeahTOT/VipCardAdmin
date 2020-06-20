@@ -15,10 +15,10 @@
 		<view class="cu-avatar lg round margin-right" style="background-image:url({{admin.adminUrl}});"></view>
 		{{admin.adminName}}
 		<button class="cu-avatar lg fr " bindtap='scancode'>
-			<image mode="widthFix" src="../../images/look.png"></image>
+			<image mode="widthFix" src="../../../images/look.png"></image>
 		</button>
 		<button class="cu-avatar lg fr" style="margin-right:10px">
-			<image mode="widthFix" src="../../images/look2.png"></image>
+			<image mode="widthFix" src="../../../images/look2.png"></image>
 		</button>
 	</view>
 	<!-- 搜索栏 -->

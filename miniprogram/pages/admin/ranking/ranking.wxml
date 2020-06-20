@@ -1,0 +1,9 @@
+<!--miniprogram/pages/ranking/ranking.wxml-->
+		<block wx:for="{{ranking}}" wx:key="cardList">
+    <view>
+			<user ranking="{{item}}"></user>
+      </view>
+		</block>
+<view class="flex flex-direction">
+  <button class="cu-btn bg-red margin-tb-sm lg" bindtap="next">下一位</button>
+</view>

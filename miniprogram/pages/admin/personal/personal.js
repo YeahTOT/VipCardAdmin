@@ -1,5 +1,5 @@
 // pages/personal/personal.js
-const util = require('../../utils/util.js')
+const util = require('../../../utils/util.js')
 const app = getApp()
 const db = wx.cloud.database()
 Page({
