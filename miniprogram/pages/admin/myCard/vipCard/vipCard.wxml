@@ -1,5 +1,5 @@
 <!--pages/myCard/vipCard/vipCard.wxml-->
-<card card="{{card}}"></card>
+<card card="{{card}}" isShowButton="true"></card>
 <view class="bg-white" style="margin:20rpx">
 	<view>
 		<view style="float:left;">使用说明：</view>

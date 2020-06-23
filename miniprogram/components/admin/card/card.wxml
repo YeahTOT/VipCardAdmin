@@ -21,6 +21,23 @@
 			</block>
 		</view>
 		<!-- 分享会员卡按钮 -->
-		<button class="cu-btn line-black round sm fr" style="width:100rpx;margin-top:70rpx">分享</button>
+		<button class="cu-btn line-black round sm fr" wx:if="{{isShowButton}}" style="width:100rpx;margin-top:70rpx" bindtap="showQRCode" data-target="Image">分享</button>
 	</view>
+</view>
+
+
+  <view class="cu-modal {{modalName=='Image'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="bg-img" style="background-image: url('{{QRCode}}');height:200px;">
+      <view class="cu-bar justify-end text-white">
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close "></text>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left" bindtap="downImg">下载</view>
+      <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">返回</view>
+    </view>
+  </view>
 </view>

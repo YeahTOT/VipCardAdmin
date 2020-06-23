@@ -94,11 +94,15 @@ changeAdmin:function(){
     // 允许从相机和相册扫码
     wx.scanCode({
       success(res) {
-        console.log(res);
+        console.log(res.result);
         wx.showToast({
           title: '成功',
           icon: 'success',
           duration: 2000
+        })
+        // 扫面成功跳转到领取会员领取页面
+        wx.navigateTo({
+          url: '../personal/getVipCard/getVipCard?storeCardId='+res.result,
         })
       },
       fail: (res) => {
@@ -249,7 +253,6 @@ cancel:function(){
       }
     })
     // 初始化排队信息
-   console.log("11",app.globalData.storeOpenid)
     if(app.globalData.storeOpenid!=null && app.globalData.storeOpenid!=""){
       console.log("初始化排队信息",this.data.storeOpenid)
       this.setData({

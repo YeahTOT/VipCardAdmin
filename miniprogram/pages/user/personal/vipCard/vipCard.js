@@ -58,45 +58,35 @@ Page({
           }
         })
       }
-      // wx.request({
-      //   url: app.globalData.url + 'ranking/userRanking/' + 'oHy4O5A5cA3WAdC9YTJo8qMQiIUo' + '/' + app.globalData.user.openid,
-      //   method: 'GET',
-      //   header: { 'content-type': 'application/x-www-form-urlencoded' },
-      //   data: {
-      //   },
-      //   success: function (res) {
-      //     console.log(res.data)
-      //     app.globalData.storeOpenid = "oHy4O5A5cA3WAdC9YTJo8qMQiIUo";
-      //     // 弹出提示框
-      //     if (res.data) {
-      //       wx.showModal({
-      //         title: '提示',
-      //         content: '预约成功',
-      //         showCancel: false,
-      //         success(res) {
-      //           if (res.confirm) {
-      //             wx.navigateBack({
-      //               delta: 2
-      //             })
-      //           }
-      //         }
-      //       })
-      //     } else {
-      //       wx.showModal({
-      //         title: '提示',
-      //         content: '您已经在队伍中了',
-      //         showCancel: false,
-      //         success(res) {
-
-      //         }
-      //       })
-      //     }
-      //   },
-      //   fail: function (res) {
-      //     console.log(res)
-      //   }
-      // })
     }
+  },
+  // 删除会员卡
+  deleteCard(){
+    wx.request({
+      url: app.globalData.url+'usercard/'+cardID,
+      method: 'DELETE',
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+      },
+      success: function (res) {
+        console.log(res.data)
+        wx.showModal({
+          title: '提示',
+          content: '删除成功',
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              wx.navigateBack({
+                delta: 2
+              })
+            } 
+          }
+        })
+      },
+      fail:function(res){
+        console.log(res)
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

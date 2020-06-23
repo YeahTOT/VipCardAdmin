@@ -1,0 +1,25 @@
+<card card="{{storeCard}}"></card>
+<view class="bg-white" style="margin:20rpx">
+	<view>
+		<view style="float:left;">使用说明：</view>
+		<view style="display:inline-block;width:500rpx">{{storeCard.cardNode}}</view>
+	</view>
+</view>
+<!-- 地址 -->
+<view class="bg-white" style="margin:20rpx">
+	<view class="padding" style="length:200rpx">
+		<image src="../../../../images/car.png" style="width:60rpx;height:60rpx;margin-right:20rpx"></image>
+		<view style="display:inline-block;width:400rpx ;font-size:30rpx">{{storeCard.store.storeAddress}}</view>
+	</view>
+</view>
+<!-- 联系电话 -->
+<view class="bg-white" style="margin:20rpx">
+	<view class="padding" style="length:200rpx">
+		<image src="../../../../images/phone.png" style="width:60rpx;height:60rpx;margin-right:20rpx"></image>
+		<view style="display:inline-block;width:400rpx ;font-size:30rpx">{{storeCard.store.storePhone}}</view>
+	</view>
+</view>
+<!-- 领取会员卡 -->
+<view class="flex flex-direction">
+  <button class="cu-btn bg-red margin-tb-sm lg" bindtap="getCard">确认领取</button>
+</view>

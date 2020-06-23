@@ -33,7 +33,7 @@
 </view>
 <!-- 标签 -->
 
-<navigator class="cu-bar bg-white solid-bottom margin-top" url="./record/record" open-type="navigate">
+<navigator class="cu-bar bg-white solid-bottom margin-top" bindtap="deleteCard" open-type="navigate">
 	<view class="action">
 		<text class="cuIcon-tagfill text-orange "></text> 删除会员卡
 	</view>

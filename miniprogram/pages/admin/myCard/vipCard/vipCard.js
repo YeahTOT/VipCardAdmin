@@ -12,9 +12,10 @@ Page({
   },
 
   showQRCode(e) {
+    console.log(this.data)
     // 更具storeOpenid获取二维码
     this.setData({
-      QRCode: app.globalData.url + 'storecard/QRCode/' + this.data.card.cardID
+      QRCode: app.globalData.url + 'storecard/QRCode/' + this.data.card.storeCardId
     })
     this.setData({
       modalName: e.currentTarget.dataset.target
