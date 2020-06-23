@@ -36,4 +36,11 @@
 			<text class="cuIcon-tagfill text-orange "></text> 给指定用户消费
 		</view>
 	</navigator>
+
+	<!-- 测试的跳转按钮 -->
+		<view class="cu-bar bg-white solid-bottom margin-top " bindtap="changeUser">
+		<view class="action">
+			<text class="cuIcon-tagfill text-orange "></text> 跳转到用户端
+		</view>
+	</view>
 </block>

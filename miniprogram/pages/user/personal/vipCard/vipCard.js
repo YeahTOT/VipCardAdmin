@@ -16,15 +16,15 @@ Page({
     card:null, //会员卡
     tabCur: 0,
     iconList: [{
-      image: '../../../../images/tab/record.png',
+      image: 'cloud://vipcard-3y6o1.7669-vipcard-3y6o1-1301438009/res/coin/charge.png',
       name: '充值',
       url:"record"
     }, {
-      image: '../../../../images/tab/charge.png',
+      image: 'cloud://vipcard-3y6o1.7669-vipcard-3y6o1-1301438009/res/coin/record.png',
       name: '交易记录',
       url:"./record/record"
     }, {
-      image: '../../../../images/tab/queue.png',
+      image: 'cloud://vipcard-3y6o1.7669-vipcard-3y6o1-1301438009/res/coin/queue.png',
       name: '预约排队',
       url:"record"
     }],

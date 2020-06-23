@@ -17,7 +17,7 @@
 		<button class="cu-avatar lg fr " bindtap='scancode'>
 			<image mode="widthFix" src="../../../images/look.png"></image>
 		</button>
-		<button class="cu-avatar lg fr" style="margin-right:10px">
+		<button class="cu-avatar lg fr" style="margin-right:10px" >
 			<image mode="widthFix" src="../../../images/look2.png"></image>
 		</button>
 	</view>
@@ -25,25 +25,25 @@
 	<!-- <view wx:if="{{ranking}}">正在排队:{{ranking}}</view> -->
 	<!-- <block wx:else>没有您的排队信息</block> -->
 	<view class="bg-white shadow-blur  align-end" style="margin-top:10px" wx:if="{{rankingNum!=''}}">
-		<view  style="float:left;margin-top:10rpx">
+		<view style="float:left;margin-top:10rpx">
 			<view class="cu-avatar round " style="background-image:url('https://7669-vipcard-3y6o1-1301438009.tcb.qcloud.la/image/google.png?sign=d24081f06d9b12f718953b0291f95c79&t=1585280719');margin-left:10px"></view>
 		</view>
-		<view  style="padding:6px; display:inline-block">
+		<view style="padding:6px; display:inline-block">
 			<view>商家名称</view>
 			<view>排队进度： 前边还有 {{rankingNum}} 人</view>
 		</view>
 		<button class="cu-btn lines-grey round sm shadow  fr" style="width:70px;margin-right:20px;margin-top:15px;" bindtap="cancel">放弃预约</button>
 	</view>
 	<!-- 搜索栏 -->
-	<view class="cu-bar search bg-white" style="margin-top:10px">
-		<view class="search-form round">
-			<text class="cuIcon-search"></text>
-			<input type="text" placeholder="输入会员卡名称搜索会员卡" confirm-type="search">{{cardName}}</input>
+		<view class="cu-bar search bg-white" style="margin-top:10px">
+			<view class="search-form round">
+				<text class="cuIcon-search"></text>
+				<input type="text" placeholder="输入会员卡名称搜索会员卡" confirm-type="search">{{cardName}}</input>
+			</view>
+			<view class="action">
+				<button class="cu-btn bg-green shadow-blur round" style="width:80px" bindtap="changeAdmin">搜索</button>
+			</view>
 		</view>
-		<view class="action">
-			<button class="cu-btn bg-green shadow-blur round" style="width:80px" bindtap="selectCard">搜索</button>
-		</view>
-	</view>
 	<!-- 我的会员卡 -->
 	<view class="cu-bar bg-white solid-bottom margin-top " bindtap="showVip">
 		<view class="action">
@@ -65,5 +65,12 @@
 				<card card="{{item}}"></card>
 			</navigator>
 		</block>
+	</view>
+
+		<!-- 测试的跳转按钮 -->
+	<view class="cu-bar bg-white solid-bottom margin-top " bindtap="changeAdmin">
+		<view class="action">
+			<text class="cuIcon-tagfill text-orange "></text> 跳转到商家端
+		</view>
 	</view>
 </block>

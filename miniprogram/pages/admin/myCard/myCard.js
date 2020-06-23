@@ -30,6 +30,8 @@ Page({
     cardStatus3:"",// 已过期的样式
   },
 
+
+ 
   //展示会员卡列表
   showVip:function(){
     if(this.data.isShowVip){
@@ -191,7 +193,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
+    const that = this;
+    // 如果存在商家信息，就可以直接登录
+    if (app.globalData.admin) {
+      this.setData({
+        admin: {
+          openid: app.globalData.admin.openid,
+          adminName: app.globalData.admin.adminName,
+          adminUrl: app.globalData.admin.adminUrl
+        },
+      })
+      // 根据openid查询card信息
+      wx.request({
+        url:app.globalData.url+'storecard/cardByOpenid/' + app.globalData.admin.openid,
+        method: 'GET',
+        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        data: {
+        },
+        success: function (res) {
+          console.log(res.data)
+          that.setData({
+            cardList:res.data
+          })
+        },
+        fail: function (res) {
+          dataInit(that)
+          console.log(res)
+        }
+      })
+    }
   },
 
   /**

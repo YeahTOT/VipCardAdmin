@@ -3,7 +3,7 @@ App({
   onLaunch: function() {
     // 服务器域名
     this.globalData.url = "http://yeah.gold:8081/vipcard/";
-    // wx.setStorageSync("url", "http://192.168.43.242:8081/vipcard/")
+    // this.globalData.url = "http://192.168.43.242:8081/vipcard/";
     wx.cloud.init({
       env:'vipcard-3y6o1',
       traceUser:true

@@ -28,7 +28,35 @@ Page({
     cardStatus3:"",// 已过期的样式
     cardName:"", // 搜索会员卡
   },
+ // 跳转到user主页面
+ changeUser:function(){
+  wx.hideTabBar({
+    animation: true,
+  })
+   wx.redirectTo({
+    url: '../../user/personal/personal',
+    complete: (res) => {
+      console.log(res)
+    },
+    fail: (res) => {
+      console.log(res)
+    },
+    success: (res) => {
+      console.log(res)
+    },
+  })
+},
 
+// 跳转到Admin主页面
+changeAdmin:function(){
+  wx.switchTab({
+    url: '../../admin/personal/personal',
+  })
+  wx.showTabBar({
+    animation: true,
+  })
+
+},
   // 查询某一张会员阿卡
   selectCard:function(){
     const that = this;

@@ -29,7 +29,34 @@ Page({
     cardStatus2: "",// 未过期的样式
     cardStatus3: "",// 已过期的样式
   },
+ // 跳转到user主页面
+ changeUser:function(){
+  wx.hideTabBar({
+    animation: true,
+  })
+   wx.redirectTo({
+    url: '../../user/personal/personal',
+    complete: (res) => {
+      console.log(res)
+    },
+    fail: (res) => {
+      console.log(res)
+    },
+    success: (res) => {
+      console.log(res)
+    },
+  })
+},
 
+// 跳转到Admin主页面
+changeAdmin:function(){
+  wx.showTabBar({
+    animation: true,
+  })
+  wx.switchTab({
+    url: '../../admin/personal/personal',
+  })
+},
   //展示会员卡列表
   showVip: function () {
     if (this.data.isShowVip) {
@@ -49,6 +76,7 @@ Page({
     // 允许从相机和相册扫码
     wx.scanCode({
       success(res) {
+        console.log(res.result);
         console.log(res);
         wx.showToast({
           title: '成功',
