@@ -6,19 +6,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ranking:[]
+    ranking: []
   },
-  next:function(){
+  next: function () {
     var arr = this.data.ranking;
     arr.shift()
-   const that = this;
+    const that = this;
     wx.showModal({
       title: '提示',
       content: '确定切换下一位？',
       success(res) {
-        that.setData({
-          ranking:arr
-        })
+        if (res.confirm) {
+          wx.request({
+            url: app.globalData.url + 'ranking/delByUserOpenid/' + app.globalData.admin.openid,
+            method: 'DELETE',
+            header: { 'content-type': 'application/x-www-form-urlencoded' },
+            data: {
+            },
+            success: function (res) {
+              console.log(res.data)
+              if(res!=null){
+                that.setData({
+                  ranking: res.data
+                })
+              }else{
+                console.log("error")
+              }
+            },
+            fail: function (res) {
+              console.log(res)
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+
       }
     })
   },
@@ -29,7 +51,7 @@ Page({
     const that = this;
     // 获取排队信息
     wx.request({
-      url: app.globalData.url+'ranking/rankingByStoreOpenid/'+app.globalData.admin.openid,
+      url: app.globalData.url + 'ranking/rankingByStoreOpenid/' + app.globalData.admin.openid,
       method: 'GET',
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       data: {
@@ -37,7 +59,7 @@ Page({
       success: function (res) {
         console.log(res.data)
         that.setData({
-          ranking:res.data
+          ranking: res.data
         })
       },
       fail: function (res) {

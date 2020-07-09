@@ -1,7 +1,6 @@
 /* components/user/user.wxss */
 .vipCard {
   float: left;
-  
 }
 .tag{
   justify-content: flex-end;

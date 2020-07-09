@@ -1,9 +1,19 @@
 <!--miniprogram/pages/ranking/ranking.wxml-->
-		<block wx:for="{{ranking}}" wx:key="cardList">
-    <view>
-			<user ranking="{{item}}"></user>
-      </view>
-		</block>
 <view class="flex flex-direction">
-  <button class="cu-btn bg-red margin-tb-sm lg" bindtap="next">下一位</button>
+	<button class="cu-btn bg-red margin-tb-sm lg" bindtap="next">下一位</button>
 </view>
+<block wx:for="{{ranking}}" wx:key="cardList">
+	<view class="bg-gradual-blue padding radius shadow-blur" style="margin:10px">
+		<!-- 左侧logo -->
+		<view style="float:left">
+			<view class="cu-avatar round " style="background-image:url({{item.user.avatarUrl}});"></view>
+		</view>
+		<!-- 中间的会员卡信息 -->
+		<view class="" style="padding:6px; display:inline-block">
+			<view>
+				<view>{{item.user.userName}}</view>
+			</view>
+		</view>
+		<view class="fr"></view>
+	</view>
+</block>
