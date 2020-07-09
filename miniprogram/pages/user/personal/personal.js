@@ -15,10 +15,7 @@ Page({
       userUrl: ""
     },
     rankingNum:"",//排队的名次，如果不存在则显示不在排队
-    storeOpenid:"",
-    shopId: "",//所排队的商家的id,
-    shopLogo: "",//商家logo
-    shopName: "",//商家name
+    store:{},// 用户正在排队的商家
     vipCardList:[],//会员卡列表 对象数组
     //页面组件显示状态
     isShowVip:false,//是否展开会员卡列表 true展开
@@ -252,33 +249,55 @@ cancel:function(){
         console.log(res)
       }
     })
-    // 初始化排队信息
-    if(app.globalData.storeOpenid!=null && app.globalData.storeOpenid!=""){
-      console.log("初始化排队信息",this.data.storeOpenid)
-      this.setData({
-        storeOpenid:app.globalData.storeOpenid
-      })
-    }
-    if(this.data.storeOpenid!=""){
-      // 存在排队信息
+
+    // 查询正在排队的商家信息
+    wx.request({
+      url: app.globalData.url+'ranking/rankingFindStoreByUser/'+app.globalData.user.openid,
+      method: 'GET',
+      header: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: {
+      },
+      success: function (res) {
+        // 如果查询到排队名词，则res>0
+        if(res.data != null){
+          that.setData({
+            store:res.data[0]
+          })
+        }else{
+          that.setData({
+            store:""
+          })
+        }
+       
+      },
+      fail:function(res){
+      }
+    })
+
       // 提交请求查询排队信息
-      const that = this;
       wx.request({
-        url: app.globalData.url+'ranking/rankingByUserOpenid/'+app.globalData.user.openid+"/"+this.data.storeOpenid,
+        url: app.globalData.url+'ranking/rankingByUserOpenid/'+app.globalData.user.openid,
         method: 'GET',
         header: { 'content-type': 'application/x-www-form-urlencoded' },
         data: {
         },
         success: function (res) {
-          that.setData({
-            rankingNum:res.data
-          })
+          // 如果查询到排队名词，则res>0
+          if(res.data > 0){
+            that.setData({
+              rankingNum:res.data
+            })
+          }else{
+            that.setData({
+              rankingNum:""
+            })
+          }
+         
         },
         fail:function(res){
-          console.log(res)
         }
       })
-    }
+    
     }
   },
 

@@ -30,34 +30,33 @@ Page({
     }],
   },
   ranking:function(e){
+    const that = this;
     if(e.currentTarget.dataset.name == '预约排队'){
-      // 如果不存在排队信息
-      if(!app.globalData.storeOpenid){
-        app.globalData.storeOpenid = "oHy4O5A5cA3WAdC9YTJo8qMQiIUo";
-        // wx.setStorageSync("storeOpenid", "oHy4O5A5cA3WAdC9YTJo8qMQiIUo") ;
-        // 弹出提示框
-        wx.showModal({
-          title: '提示',
-          content: '预约成功',
-          showCancel: false,
-          success(res) {
-            if (res.confirm) {
-              wx.navigateBack({
-                delta: 2
-              })
-            } 
+      wx.request({
+        url: app.globalData.url+'ranking/userRanking/'+app.globalData.user.openid+"/"+that.data.card.storeCard.store.storeOpenid,
+        method: 'PUT',
+        header: { 'content-type': 'application/x-www-form-urlencoded' },
+        data: {
+        },
+        success: function (res) {
+          if(res.data == true){
+            wx.showModal({
+              title: '提示',
+              content: '预约成功',
+              showCancel: false,
+              success(res) {
+                if (res.confirm) {
+                  wx.navigateBack({
+                    delta: 2
+                  })
+                } 
+              }
+            })
           }
-        })
-      }else{
-        wx.showModal({
-          title: '提示',
-          content: '您已经在队伍中了',
-          showCancel: false,
-          success(res) {
-           
-          }
-        })
-      }
+        },
+        fail:function(res){
+        }
+      })
     }
   },
   // 删除会员卡
