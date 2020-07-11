@@ -192,15 +192,30 @@ cancel:function(){
     title: '提示',
     content: '确认取消？',
     success(res) {
-      that.setData({
-        storeOpenid:"",
-        rankingNum:""
-      })
+      if (res.confirm) {
+        console.log('用户点击确定')
+        // 取消预约逻辑
+        wx.request({
+          url: app.globalData.url+'ranking/rankingCancelByUser/'+app.globalData.user.openid, //仅为示例，并非真实的接口地址
+          method:"DELETE",
+          data: {
+          },
+          header: {
+          'content-type': 'application/json' // 默认值
+          },
+          success (res) {
+          console.log(res.data)
+          that.setData({
+            rankingNum:""
+          })
+          }
+          })
+
+        } else if (res.cancel) {
+        console.log('用户点击取消')
+        }
     }
   })
-  app.globalData.storeOpenid = "";
-
-  // wx.setStorageSync("storeOpenid", "") ;
 },
 
   /**
