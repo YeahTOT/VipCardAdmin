@@ -6,14 +6,9 @@ Page({
   data: {
     // 需要提交给服务器的数据格式                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
     storeCard:{
-      cardName: "季季红",
+      cardName: "",
       cardTypes: [
-        {
-          cardTypeId: 1
-        },
-        {
-          cardTypeId: 2
-        }
+      
       ],
       cardTimeStart: "2020-05-07",
       cardTimeEnd: "2020-06-28",
@@ -30,7 +25,7 @@ Page({
     dateStart: '2018-01-01',//默认起始时间  
     dateEnd: '2020-01-24',//默认结束时间 
     cardTypeIndex: null,//会员卡类型下标
-    cardTypePicker: ['储值卡', '计次卡'],//会员卡类型
+    cardTypePicker: ['储值卡', '计次卡','积分卡'],//会员卡类型
     cardIsScore: false,//用户是否可以积分
     cardGradeRuleIndex: null,//会员卡等级下标
     cardGradeRulePicker: [],//会员卡等级规则,更具会员卡类型生成

@@ -43,7 +43,7 @@
 </view>
 <!-- 是否可以积分按钮 -->
 <!-- <view class="cu-form-group" wx:if="{{cardTypePicker[cardTypeIndex]=='储值卡'}}"> -->
-<view class="cu-form-group">
+<view class="cu-form-group" wx:if="{{cardTypePicker[cardTypeIndex]!='积分卡'}}">
 	<view class="title">是否有积分功能</view>
 	<switch bindchange="cardIsScoreChange"></switch>
 </view>
@@ -129,6 +129,8 @@
 	每<input placeholder="多少金额" style="border:1px solid #eee;margin:0 5px"></input>对应 <input placeholder="多少次数" style="border:1px solid #eee;margin:0 5px"></input>
 	<!-- <input placeholder="输入充值金额对应的次数"></input> -->
 </view>
+<!-- 使用说明 -->
+
 <!-- 上传会员卡背景图片 -->
 <view class="cu-bar bg-white margin-top">
 	<view class="action">

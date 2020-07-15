@@ -29,34 +29,25 @@ Page({
     cardStatus2: "",// 未过期的样式
     cardStatus3: "",// 已过期的样式
   },
- // 跳转到user主页面
- changeUser:function(){
-  wx.hideTabBar({
-    animation: true,
-  })
-   wx.redirectTo({
-    url: '../../user/personal/personal',
-    complete: (res) => {
-      console.log(res)
-    },
-    fail: (res) => {
-      console.log(res)
-    },
-    success: (res) => {
-      console.log(res)
-    },
-  })
-},
+  // 跳转到user主页面
+  changeUser: function () {
+    wx.hideTabBar({
+      animation: true,
+    })
+    wx.redirectTo({
+      url: '../../user/personal/personal',
+      complete: (res) => {
+        console.log(res)
+      },
+      fail: (res) => {
+        console.log(res)
+      },
+      success: (res) => {
+        console.log(res)
+      },
+    })
+  },
 
-// 跳转到Admin主页面
-changeAdmin:function(){
-  wx.showTabBar({
-    animation: true,
-  })
-  wx.switchTab({
-    url: '../../admin/personal/personal',
-  })
-},
   //展示会员卡列表
   showVip: function () {
     if (this.data.isShowVip) {
@@ -112,25 +103,29 @@ changeAdmin:function(){
           },
         })
         // 将个人信息放到本地缓存中
-        wx.setStorageSync("admin", this.data.admin)
+        wx.setStorageSync("admin", this.data.admin);
+        app.globalData.admin = this.data.admin;
+        // 登录成功后显示tabbar
+        wx.showTabBar({
+          animation: true,
+        })
         // 更具openid查询到store的信息，保存到本地缓存中
-        console.log(app.globalData.url+'store/' + openid)
         wx.request({
-          url: app.globalData.url+'store/' + openid,
+          url: app.globalData.url + 'store/' + openid,
           method: 'GET',
           header: { 'content-type': 'application/x-www-form-urlencoded' },
           data: {
           },
           success: function (res) {
-            console.log(res.data)
+            // console.log(res.data)
             that.setData({
-              store:res.data
+              store: res.data
             })
             // 讲store存到本地缓存中中
             wx.setStorageSync("store", that.data.store)
           },
           fail: function (res) {
-            console.log(res)
+            // console.log(res)
           }
         })
       }
@@ -179,7 +174,7 @@ changeAdmin:function(){
   onLoad: function (options) {
     const that = this;
     // 如果存在商家信息，就可以直接登录
-    if (app.globalData.admin) {
+    if (app.globalData.admin.adminName) {
       this.setData({
         admin: {
           openid: app.globalData.admin.openid,
@@ -187,9 +182,13 @@ changeAdmin:function(){
           adminUrl: app.globalData.admin.adminUrl
         },
       })
-       // 更具openid查询到store的信息，保存到本地缓存中
-       wx.request({
-        url:app.globalData.url+'store/' + app.globalData.admin.openid,
+      // 登录成功后显示tabbar
+      wx.showTabBar({
+        animation: true,
+      })
+      // 更具openid查询到store的信息，保存到本地缓存中
+      wx.request({
+        url: app.globalData.url + 'store/' + app.globalData.admin.openid,
         method: 'GET',
         header: { 'content-type': 'application/x-www-form-urlencoded' },
         data: {
@@ -197,7 +196,7 @@ changeAdmin:function(){
         success: function (res) {
           console.log(res.data)
           that.setData({
-            store:res.data
+            store: res.data
           })
           // 讲store存到本地缓存中中
           wx.setStorageSync("store", that.data.store)
@@ -220,14 +219,7 @@ changeAdmin:function(){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // if (app.globalData.shopInfo) {
-    //   this.setData({
-    //     nickName: app.globalData.userInfo.nickName,
-    //     avatarUrl: app.globalData.userInfo.avatarUrl,
-    //     shopName: app.globalData.shopInfo.shopName,
-    //     shopLogo: app.globalData.shopInfo.shopLogo
-    //   })
-    // }
+
   },
 
   /**

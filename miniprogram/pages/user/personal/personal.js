@@ -49,7 +49,7 @@ changeAdmin:function(){
   wx.switchTab({
     url: '../../admin/personal/personal',
   })
-  wx.showTabBar({
+  wx.hideTabBar({
     animation: true,
   })
 
@@ -135,7 +135,8 @@ getuserinfo(e) {
         },
       })
        // 将个人信息放到本地缓存中
-       wx.setStorageSync("user", that.data.user)
+       wx.setStorageSync("user",this.data.user)
+       app.globalData.user = this.data.user
        // 获取会员卡信息
        wx.request({
         url: app.globalData.url+'usercard/cardByOpenId/'+openid,
@@ -196,7 +197,7 @@ cancel:function(){
         console.log('用户点击确定')
         // 取消预约逻辑
         wx.request({
-          url: app.globalData.url+'ranking/rankingCancelByUser/'+app.globalData.user.openid, //仅为示例，并非真实的接口地址
+          url: app.globalData.url+'ranking/rankingCancelByUser/'+app.globalData.user.openid, 
           method:"DELETE",
           data: {
           },
@@ -222,7 +223,6 @@ cancel:function(){
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
   },
 
   /**
@@ -236,6 +236,7 @@ cancel:function(){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log("user-show")
     const that =this;
     // 如果存在个人信息，就可以直接登录
     if (app.globalData.user) {
