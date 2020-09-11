@@ -2,9 +2,9 @@
 App({
   onLaunch: function() {
     // 服务器域名
-    // this.globalData.url = "http://yeah.gold:8081/vipcard/";
+    this.globalData.url = "http://yeah.gold:8090/vipcard/";
     // this.globalData.url = "http://192.168.1.196:8081/vipcard/";
-    this.globalData.url = "http://localhost:8081/vipcard/";
+    // this.globalData.url = "http://localhost:8090/vipcard/";
     wx.cloud.init({
       env:'vipcard-3y6o1',
       traceUser:true

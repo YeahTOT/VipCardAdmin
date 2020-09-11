@@ -14,6 +14,7 @@ Page({
     },
     cardID:"",
     card:null, //会员卡
+    QRCode: "",// 二维码
     tabCur: 0,
     iconList: [{
       image: 'cloud://vipcard-3y6o1.7669-vipcard-3y6o1-1301438009/res/coin/charge.png',
@@ -58,6 +59,20 @@ Page({
         }
       })
     }
+  },
+  showQRCode(e) {
+    // 更具storeOpenid获取二维码
+    this.setData({
+      QRCode: app.globalData.url + 'usercard/QRCode/' + this.data.card.userCardId
+    })
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
   },
   // 删除会员卡
   deleteCard(){

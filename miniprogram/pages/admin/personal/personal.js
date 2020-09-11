@@ -22,6 +22,8 @@ Page({
       storePhone: "",
       storeNode: ""
     },
+    userCard:{}, // 用户会员卡
+    user:{}, // 用户
     //页面组件显示状态
     isShowVip: false,//是否展开会员卡列表 true展开
     cardStatus: "all",// 显示的什么类型的会员卡 0 已过期 1 未过期 3 全部
@@ -62,29 +64,65 @@ Page({
     }
   },
 
-  //扫描二维码
-  scancode: function () {
-    // 允许从相机和相册扫码
-    wx.scanCode({
-      success(res) {
-        console.log(res.result);
-        console.log(res);
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 2000
-        })
-      },
-      fail: (res) => {
-        console.log(res);
-        wx.showToast({
-          title: '失败',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
-  },
+//扫描二维码
+scancode: function () {
+  const that = this;
+  // 允许从相机和相册扫码
+  wx.scanCode({
+    success(res) {
+      console.log(res.result);
+      wx.showToast({
+        title: '成功',
+        icon: 'success',
+        duration: 500
+      })
+      // 根据userCardId查询用户信息 用于显示用户姓名和logo
+      wx.request({
+        url:  app.globalData.url + 'user/' + res.result,
+        success (res) {
+          console.log(res.data)
+          // 获取user
+          that.setData({
+            user:res.data
+          })
+          
+        }
+      })
+      // 根据userCardId查询会员卡信息
+      wx.request({
+        url:  app.globalData.url + 'usercard/cardByUserCardId/' + res.result,
+        success (res) {
+          console.log(res.data.storeCard.cardTypes)
+          // 获取会员卡的类型
+          that.setData({
+            userCard:res.data
+          })
+          // 显示模态框
+          that.setData({
+            modalName: 'pay'
+          })
+        }
+      })
+      // 扫面成功跳转到结算界面
+      // wx.navigateTo({
+      //   url: '../personal/getVipCard/getVipCard?storeCardId='+res.result,
+      // })
+    },
+    fail: (res) => {
+      console.log(res);
+      wx.showToast({
+        title: '失败',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  })
+},
+hideModal(e) {
+  this.setData({
+    modalName: null
+  })
+},
   // 授权登录事件
   getuserinfo(e) {
     const that = this;

@@ -98,6 +98,63 @@ Page({
     })
   },
 
+
+  // 删除会员卡
+  deleteCard:function(){
+    const that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确认删除该会员卡，删除后用户领取的这张会员卡也将被删除',
+      success (res) {
+      if (res.confirm) {
+        wx.request({
+          url: app.globalData.url+'storecard/cardByStoreCardID/'+that.data.card.storeCardId,
+          method: 'DELETE',
+          header: { 'content-type': 'application/x-www-form-urlencoded' },
+          data: {
+          },
+          success: function (res) {
+            console.log(res.data)
+            if(res.data){
+              wx.showModal({
+                title: '提示',
+                content: '删除成功',
+                showCancel: false,
+                success(res) {
+                  if (res.confirm) {
+                    wx.navigateBack({
+                      delta: 2
+                    })
+                  } 
+                }
+              })
+            }else{
+              wx.showModal({
+                title: '提示',
+                content: '删除失败，请联系管理员',
+                showCancel: false,
+                success(res) {
+                  if (res.confirm) {
+                    wx.navigateBack({
+                      delta: 2
+                    })
+                  } 
+                }
+              })
+            }
+          
+          },
+          fail:function(res){
+            console.log(res)
+          }
+        })
+      } else if (res.cancel) {
+      console.log('用户点击取消')
+      }
+      }
+      })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

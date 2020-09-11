@@ -9,3 +9,11 @@
 .textLine {
   text-decoration: underline;
 }
+
+.pay {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  }
+/* 储值卡 */
+

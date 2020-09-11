@@ -32,9 +32,28 @@
 	</view>
 </view>
 <!-- 标签 -->
-
-<navigator class="cu-bar bg-white solid-bottom margin-top"  bindtap="deleteCard" >
+<view class="cu-bar bg-white solid-bottom margin-top"  bindtap="showQRCode"  data-target="Image" >
+	<view class="action">
+		<text class="cuIcon-tagfill text-orange "></text> 出示会员卡二维码
+	</view>
+</view>
+<view class="cu-bar bg-white solid-bottom margin-top"  bindtap="deleteCard" >
 	<view class="action">
 		<text class="cuIcon-tagfill text-orange "></text> 删除会员卡
 	</view>
-</navigator>
+</view>
+<view class="cu-modal {{modalName=='Image'?'show':''}}">
+	<view class="cu-dialog">
+		<view class="bg-img" style="background-image: url('{{QRCode}}');height:200px;">
+			<view class="cu-bar justify-end text-white">
+				<view class="action" bindtap="hideModal">
+					<text class="cuIcon-close "></text>
+				</view>
+			</view>
+		</view>
+		<view class="cu-bar bg-white">
+			<view class="action margin-0 flex-sub  solid-left" bindtap="downImg">下载</view>
+			<view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">返回</view>
+		</view>
+	</view>
+</view>

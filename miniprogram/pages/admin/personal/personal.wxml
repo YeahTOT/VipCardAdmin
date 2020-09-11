@@ -38,9 +38,58 @@
 	</navigator>
 
 	<!-- 测试的跳转按钮 -->
-		<view class="cu-bar bg-white solid-bottom margin-top " bindtap="changeUser">
+	<view class="cu-bar bg-white solid-bottom margin-top " bindtap="changeUser">
 		<view class="action">
 			<text class="cuIcon-tagfill text-orange "></text> 跳转到用户端
+		</view>
+	</view>
+
+	<!-- 模态框 核销功能 -->
+	<view class="cu-modal {{modalName=='pay'?'show':''}}">
+		<view class="cu-dialog">
+			<!-- 显示会员卡基本信息 -->
+			<view class="bg-gradual-blue radius shadow-blur" style="margin:10px">
+				<!-- 左侧 -->
+				<view class="fl margin-left" style="margin-top:10rpx">
+					<!-- logo -->
+					<view class="cu-avatar round " style="background-image:url({{user.avatarUrl}});"></view>
+					<!-- 姓名 -->
+					<view class="margin-top">{{user.userName}}</view>
+				</view>
+				<!-- 中间的会员卡信息 -->
+				<view class="" style="padding:6px; display:inline-block">
+					<view>
+						<view>{{userCard.storeCard.cardName}}</view>
+						<view wx:if="{{userCard.cardMoney}}">剩余金额： {{userCard.cardMoney}} 元</view>
+						<view wx:if="{{userCard.cardScore}}">剩余积分： {{userCard.cardScore}} 分</view>
+						<view wx:if="{{userCard.cardTimes}}">剩余次数： {{userCard.cardTimes}} 次</view>
+					</view>
+				</view>
+			</view>
+			<!-- 核销功能 -->
+			<view wx:for="{{userCard.storeCard.cardTypes}}" wx:key="pay">
+				<view wx:if="{{item.cardType == '储值卡'}}" wx:key="pay0">
+					<view class="flex padding-left padding-right">
+						<view class="flex-sub bg-gradual-red padding radius text-center shadow-blurs margin-right">充值</view>
+						<view class="flex-sub bg-gradual-red padding radius text-center shadow-blur">消费</view>
+					</view>
+				</view>
+				<view wx:if="{{item.cardType == '计次卡'}}" wx:key="pay1">
+					<view class="flex padding-left padding-right">
+						<view class="flex-sub bg-gradual-red padding radius text-center shadow-blur margin-right">增加次数</view>
+						<view class="flex-sub bg-gradual-red padding radius text-center shadow-blur">减少次数</view>
+					</view>
+				</view>
+				<view wx:if="{{item.cardType == '积分卡'}}" wx:key="pay2">
+					<view class="flex padding-top padding-left padding-right">
+						<view class="flex-sub bg-gradual-red padding radius text-center shadow-blur margin-right">增加积分</view>
+						<view class="flex-sub bg-gradual-red padding radius text-center shadow-blur">减少积分</view>
+					</view>
+				</view>
+			</view>
+			<view class="cu-bar bg-white">
+				<view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">取消</view>
+			</view>
 		</view>
 	</view>
 </block>
